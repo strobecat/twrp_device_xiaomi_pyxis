@@ -34,13 +34,32 @@ PRODUCT_BRAND := Xiaomi
 PRODUCT_MODEL := Xiaomi Mi 9 Lite
 PRODUCT_MANUFACTURER := Xiaomi
 
-# HACK: Set vendor patch level
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.build.security_patch=2099-12-31
-
 PRODUCT_SYSTEM_PROPERTY_BLACKLIST += \
     ro.product.device \
     ro.product.name \
-    ro.build.product \
-    ro.bootimage.build.date.utc \
-    ro.build.date.utc
+    ro.build.product
+
+# fastbootd
+PRODUCT_PACKAGES += \
+    android.hardware.fastboot@1.0-impl-mock \
+    fastbootd
+
+# qcom decryption
+PRODUCT_PACKAGES += \
+    qcom_decrypt \
+    qcom_decrypt_fbe
+
+# Take a few libraries from sources
+TARGET_RECOVERY_DEVICE_MODULES += \
+		android.hidl.base@1.0.so \
+		libicuuc \
+		libxml2 \
+		libion \
+    vendor.display.config@1.0
+
+RECOVERY_LIBRARY_SOURCE_FILES += \
+		$(TARGET_OUT_SHARED_LIBRARIES)/android.hidl.base@1.0.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libicuuc.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libxml2.so \
+		$(TARGET_OUT_SHARED_LIBRARIES)/libion.so \
+		$(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@1.0.so

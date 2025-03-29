@@ -50,8 +50,6 @@ void load_properties(const char *model) {
 }
 
 void vendor_load_properties() {
-    property_set("ro.bootimage.build.date.utc", "1546335651");
-    property_set("ro.build.date.utc", "1546335651");
     const char* path = "/proc/meminfo";
     std::ifstream infile(path);
     std::string line;
