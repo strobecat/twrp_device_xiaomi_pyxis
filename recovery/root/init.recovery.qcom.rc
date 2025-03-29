@@ -55,4 +55,5 @@ on fs
 #     seclabel u:r:recovery:s0
 
 on boot
+    setprop prepdecrypt.loglevel 2
     write /sys/class/input/input2/device/fts_gesture_mode 1
