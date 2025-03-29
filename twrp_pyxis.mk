@@ -44,6 +44,7 @@ PRODUCT_PACKAGES += \
 
 # HIDL
 PRODUCT_PACKAGES += \
+    libhidlbase \
     libhidltransport \
     libhwbinder
 
@@ -55,16 +56,16 @@ PRODUCT_PACKAGES += \
 # Take a few libraries from sources
 TARGET_RECOVERY_DEVICE_MODULES += \
     android.hardware.keymaster@4.0 \
-    android.hidl.base@1.0 \
+    android.hardware.keymaster@4.1 \
     libicuuc \
     libion \
     libxml2 \
-    vendor.display.config@1.0
+    vendor.display.config@2.0
 
 RECOVERY_LIBRARY_SOURCE_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.keymaster@4.0.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/android.hidl.base@1.0.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.keymaster@4.1.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libicuuc.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libxml2.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libion.so \
-    $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@1.0.so
+    $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@2.0.so
