@@ -54,7 +54,7 @@ void vendor_load_properties() {
   std::string line;
   while (std::getline(infile, line))
   {
-    if (line.find("MemTotal:") != string::npos)
+    if (line.find("MemTotal:") != std::string::npos)
     {
       if (line.substr(17, 7) > "7000000") {
         property_override("ro.product.device", "vela");
