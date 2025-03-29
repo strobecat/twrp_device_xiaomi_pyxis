@@ -60,7 +60,7 @@ BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := pyxis
+TARGET_OTA_ASSERT_DEVICE := pyxis,vela
 
 # Avb
 BOARD_AVB_ENABLE := true
@@ -125,7 +125,7 @@ TARGET_COPY_OUT_VENDOR := vendor
 
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_pyxis
-TARGET_RECOVERY_DEVICE_MODULES := libinit_pyxis
+TARGET_RECOVERY_DEVICE_MODULES += libinit_pyxis
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
 
 # TWRP specific build flags

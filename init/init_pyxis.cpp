@@ -1,5 +1,5 @@
 /*
-   Copyright (C) 2017-2018 The Android Open Source Project
+   Copyright (C) 2017-2022 The Android Open Source Project
 
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions are
@@ -27,49 +27,42 @@
    IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <cstdlib>
-#include <unistd.h>
-#include <fcntl.h>
-#include <android-base/logging.h>
+#define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
 #include <android-base/properties.h>
-
-#include "property_service.h"
-#include "log.h"
+#include <sys/_system_properties.h>
 #include <string>
 #include <fstream>
 
-using namespace std;
+#include "property_service.h"
+#include "vendor_init.h"
 
-namespace android {
-namespace init {
+using android::base::GetProperty;
 
-void load_properties(const char *model) {
-    property_set("ro.product.name", model);
-    property_set("ro.build.product", model);
-    property_set("ro.product.device", model);
+void property_override(char const prop[], char const value[]) {
+  prop_info *pi;
+
+  pi = (prop_info *)__system_property_find(prop);
+  if (pi)
+    __system_property_update(pi, value, strlen(value));
+  else
+    __system_property_add(prop, strlen(prop), value, strlen(value));
 }
 
 void vendor_load_properties() {
-    const char* path = "/proc/meminfo";
-    std::ifstream infile(path);
-    std::string line;
-    while (std::getline(infile, line))
+  const char* path = "/proc/meminfo";
+  std::ifstream infile(path);
+  std::string line;
+  while (std::getline(infile, line))
+  {
+    if (line.find("MemTotal:") != string::npos)
     {
-        if (line.find("MemTotal:") != string::npos)
-        {
-            if (line.substr(17, 7) > "7000000") {
-                load_properties("vela");
-                break;
-            }
-            else
-            {
-                load_properties("pyxis");
-                break;
-            }
-        }
+      if (line.substr(17, 7) > "7000000") {
+        property_override("ro.product.device", "vela");
+        property_override("ro.build.product", "vela");
+        property_override("ro.product.name", "twrp_vela");
+        break;
+      }
     }
-    infile.close();
+  }
+  infile.close();
 }
-
-}  // namespace init
-}  // namespace android
