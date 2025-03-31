@@ -43,11 +43,12 @@ TARGET_BOARD_PLATFORM := sdm710
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno616
 
 # Kernel
-BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200n8 earlycon=msm_geni_serial,0xa90000 androidboot.hardware=qcom androidboot.console=ttyMSM0 androidboot.memcg=1 lpm_levels.sleep_disabled=1 video=vfb:640x400,bpp=32,memsize=3072000 msm_rtb.filter=0x237 service_locator.enable=1 swiotlb=2048 firmware_class.path=/vendor/firmware_mnt/image loop.max_part=7 androidboot.usbcontroller=a600000.dwc3 androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200n8 earlycon=msm_geni_serial,0xA90000 androidboot.hardware=qcom androidboot.console=ttyMSM0 video=vfb:640x400,bpp=32,memsize=3072000 msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 service_locator.enable=1 androidboot.configfs=true androidboot.usbcontroller=a600000.dwc3 swiotlb=1 loop.max_part=7 androidboot.selinux=permissive androidboot.usbconfigfs=true
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
-BOARD_RAMDISK_OFFSET     := 0x01000000
+BOARD_RAMDISK_OFFSET := 0x01000000
+BOARD_DTB_OFFSET := 0x01f00000
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
@@ -58,11 +59,13 @@ BOARD_INCLUDE_RECOVERY_DTBO := true
 BOARD_BOOTIMG_HEADER_VERSION := 2
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset $(BOARD_RAMDISK_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
+BOARD_MKBOOTIMG_ARGS := --dtb_offset $(BOARD_DTB_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
 BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := pyxis,vela
+# Will be set in libinit
+# TARGET_OTA_ASSERT_DEVICE := pyxis,vela
 
 # Avb
 BOARD_AVB_ENABLE := true
@@ -147,7 +150,7 @@ TW_Y_OFFSET := 80
 TW_H_OFFSET := -80
 # TW_SCREEN_BLANK_ON_BOOT := true
 TW_EXCLUDE_TWRPAPP := true
-TW_NO_SCREEN_TIMEOUT := true
+# TW_NO_SCREEN_TIMEOUT := true
 TW_STATUS_ICONS_ALIGN := center
 TW_EXCLUDE_APEX := true
 TW_INCLUDE_CRYPTO := true
@@ -155,10 +158,10 @@ TW_INCLUDE_RESETPROP := true
 # Debug
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
-TARGET_RECOVERY_DEVICE_MODULES += debuggerd
-RECOVERY_BINARY_SOURCE_FILES += $(TARGET_OUT_EXECUTABLES)/debuggerd
-TARGET_RECOVERY_DEVICE_MODULES += strace
-RECOVERY_BINARY_SOURCE_FILES += $(TARGET_OUT_EXECUTABLES)/strace
+# TARGET_RECOVERY_DEVICE_MODULES += debuggerd
+# RECOVERY_BINARY_SOURCE_FILES += $(TARGET_OUT_EXECUTABLES)/debuggerd
+# TARGET_RECOVERY_DEVICE_MODULES += strace
+# RECOVERY_BINARY_SOURCE_FILES += $(TARGET_OUT_EXECUTABLES)/strace
 
 # Encryption
 BOARD_USES_METADATA_PARTITION := true

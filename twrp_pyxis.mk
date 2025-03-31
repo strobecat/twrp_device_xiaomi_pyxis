@@ -28,6 +28,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 $(call inherit-product, vendor/twrp/config/common.mk)
 
 ## Device identifier. This must come after all inclusions
+# Will be changed in libinit
 PRODUCT_DEVICE := pyxis
 PRODUCT_NAME := twrp_pyxis
 PRODUCT_BRAND := Xiaomi

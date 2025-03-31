@@ -57,9 +57,23 @@ void vendor_load_properties() {
     if (line.find("MemTotal:") != std::string::npos)
     {
       if (line.substr(17, 7) > "7000000") {
+        property_override("ro.product.system.device", "vela");
+        property_override("ro.product.system.model", "Xiaomi Mi CC 9 Meitu Edition");
+        property_override("ro.product.vendor.device", "vela");
+        property_override("ro.product.vendor.model", "Xiaomi Mi CC 9 Meitu Edition");
+        property_override("ro.product.odm.device", "vela");
+        property_override("ro.product.odm.model", "Xiaomi Mi CC 9 Meitu Edition");
+        property_override("ro.product.product.device", "vela");
+        property_override("ro.product.product.model", "Xiaomi Mi CC 9 Meitu Edition");
+        property_override("ro.product.system_ext.device", "vela");
+        property_override("ro.product.system_ext.model", "Xiaomi Mi CC 9 Meitu Edition");
         property_override("ro.product.device", "vela");
+        property_override("ro.product.model", "Xiaomi Mi CC 9 Meitu Edition");
         property_override("ro.build.product", "vela");
-        property_override("ro.product.name", "twrp_vela");
+        property_override("ro.twrp.target.devices", "vela");
+        break;
+      } else {
+        property_override("ro.twrp.target.devices", "pyxis");
         break;
       }
     }
