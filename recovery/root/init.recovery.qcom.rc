@@ -28,6 +28,7 @@
 import /init.recovery.qcom_decrypt.rc
 
 on boot
+    setprop prepdecrypt.loglevel 2
     start health-hal-2-1
 
 on fs
