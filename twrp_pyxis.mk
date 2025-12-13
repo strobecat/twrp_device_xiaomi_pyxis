@@ -54,7 +54,7 @@ PRODUCT_PACKAGES += \
     qcom_decrypt \
     qcom_decrypt_fbe
 
-# Take a few libraries from sources
+# Build a few FBE dependencies from sources
 TARGET_RECOVERY_DEVICE_MODULES += \
     android.hardware.keymaster@4.0 \
     android.hardware.keymaster@4.1 \
