@@ -15,7 +15,7 @@
 #
 
 # Release name
-PRODUCT_RELEASE_NAME := pyxis
+PRODUCT_RELEASE_NAME := vela
 
 # Inherit from common AOSP config
 $(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
@@ -28,11 +28,10 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 $(call inherit-product, vendor/twrp/config/common.mk)
 
 ## Device identifier. This must come after all inclusions
-# Will be changed in libinit
-PRODUCT_DEVICE := pyxis
-PRODUCT_NAME := twrp_pyxis
-PRODUCT_BRAND := Xiaomi
-PRODUCT_MODEL := Xiaomi Mi 9 Lite
+PRODUCT_DEVICE := vela
+PRODUCT_NAME := twrp_vela
+PRODUCT_BRAND := Meitu
+PRODUCT_MODEL := MI CC 9 Meitu Edition
 PRODUCT_MANUFACTURER := Xiaomi
 
 # Dynamic partitions

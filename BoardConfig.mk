@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-DEVICE_PATH := device/xiaomi/pyxis
+DEVICE_PATH := device/xiaomi/vela
 
 # Architecture
 TARGET_ARCH := arm64
@@ -64,8 +64,7 @@ BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
 BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
 
 # Assert
-# Will be set in libinit
-# TARGET_OTA_ASSERT_DEVICE := pyxis,vela
+TARGET_OTA_ASSERT_DEVICE := vela
 
 # Avb
 BOARD_AVB_ENABLE := true
@@ -127,8 +126,6 @@ BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_VENDOR := vendor
 
 #Init
-TARGET_INIT_VENDOR_LIB := libinit_pyxis
-TARGET_RECOVERY_DEVICE_MODULES += libinit_pyxis
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
 
 # TWRP specific build flags

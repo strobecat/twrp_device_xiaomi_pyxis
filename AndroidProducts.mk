@@ -15,7 +15,7 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/twrp_pyxis.mk
+    $(LOCAL_DIR)/twrp_vela.mk
 
 COMMON_LUNCH_CHOICES := \
-    twrp_pyxis-eng
+    twrp_vela-eng
